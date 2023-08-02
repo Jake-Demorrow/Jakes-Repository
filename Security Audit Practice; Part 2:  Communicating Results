@@ -1,1 +1,73 @@
+Below is part 2 of my security audit practice
+You will find the following;
+1. The scenerio of the audit
+2. My communication of the findings of the audit
 
+
+
+
+This scenario is based on a fictional company:
+Fake Companies’ IT manager asked me to conduct an internal audit of the company’s assets, controls, and adherence to compliance regulations and standards. Then, based on the company’s current goals and level of risk, she requested that you complete a controls assessment and compliance checklist to identify and explain ways that the company can improve its security posture. 
+The task is to clearly and concisely communicate the findings and recommendations to the IT manager and other stakeholders, so they can implement the necessary controls and create appropriate documentation, processes, and procedures to ensure business continuity, the safety of critical assets, and compliance.
+
+
+Stakeholder memorandum:
+
+To: It Manager, Stakeholders
+From: Jacob Demorrow
+Date: Wednesday, August 2, 2023
+Subject: Internal IT audit findings and recommendations
+
+-- Dear Colleagues,
+Please review the following information regarding the Fake Companies' internal audit scope, goals, critical findings, summary and recommendations.
+
+Scope:
+- The Following systems are in scope: Accounting, end point detection, firewalls, intrusion detection system, SIEM tool. The systems will be evaluated for:
+1. Current user permissions
+2. Current implemented controls
+3. Current procedures and protocols
+- Ensure current user permissions, controls, procedures, and protocols in place align with PCI DSS and GSPR complicance requirements.
+- Ensure current technology is accounted for both hardware and system access.
+
+Goals:
+- Adhere to the NIST CSF.
+- Establish a better process for their system to ensure they are compliant.
+- Fortify system controls.
+- Adapt to the concept of least permissions when it comes to user credential management
+- Establish their ppolicies and procedures, which includes their playbooks.
+- Ensure they meet compliance requirements.
+
+Critical findings (Must be addressed immediately):
+- Multiple controls need to be developed and implemented to meet the audit goals, including:
+1. Control of Least Priviledge and Seperation of Duties
+2. Distaster recover plans
+3. Password, access control, and account management policies, including the implementation of a password management system
+4. Encryption (for secure website transactions)
+5. IDS
+6. Backups
+7. AV software
+8. CCTV
+9. Locks
+10. Manual monitoring, maintainance, and intervention for legacy systems
+11. Fire detection and prevention systems
+- Policies need to be developed and implemented to meet PCI DSS and GDPR compliance requirements.
+- Policies need to be developed and implemented to align to SOC1 and SOC2 guidance related to user access policies and overall data safety.
+
+Findings (Should be addressed, but no immediate need):
+-The follwing controls should be implemented when possible:
+1. Time-controlled safe
+2. Adequate lighting
+3. Locking cabinets
+4. Signage indicating alarm service provider
+
+Summary/Recommendations: It is recommended that critical findings related to complicance with PCI DSS and GDPR be promptly addressed since Fake Company accepts online payments from customers worldwide, Including the E.U.
+Additionally, since one of the goals of the audit is to adapt to the concept of least permissions, SOC1 and SOC2 guidance related to user access policies and overall data safety should be used to develop appropriate policies and procedures.
+Having disaster recovery plans and backups is also critical because they support business continuity in the event of an incident.
+Integrating an IDS and AV software into the current systems will support our ability to identify and mitigate potential risks, and could help with intrusion detection, since existing legacy systems require manual monitoring and intervention.
+To further secure assets housed at Fake Companys' single physical location, lock and CCTV should be used to secure physical assets (including equipment) and to monitor and investigate potential threats,
+While not neccessary immediately, using encryption and having a time-controlled safe, adequate lighting, locking cabinets, fire detection and prevention systems, and signage indicating alarm service provider will further improve Fake Companies' security posture.
+
+
+
+
+This is the end of Part 2 of my Security Audit practice. Thank you for reading!
