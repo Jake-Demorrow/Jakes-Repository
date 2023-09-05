@@ -1,0 +1,50 @@
+Scenario:
+In this scenario, I need to obtain information contained in server log and user data files. I also need to find files with specific names.
+
+Task 1. Search for error messages in a log file
+In this task, I must navigate to the /home/analyst/logs directory and report on the error messages in the server_logs.txt file. I’ll do this by using grep to search the file and output only the entries that are for errors.
+
+analyst@89b2f10a9b72:~$ cd logs
+analyst@89b2f10a9b72:~/logs$ grep error server_logs.txt
+2022-09-28 13:56:22 error   The password is incorrect
+2022-09-28 15:56:22 error   The username is incorrect
+2022-09-28 16:56:22 error   The password is incorrect
+2022-09-29 13:56:22 error   An unexpected error occurred
+2022-09-29 15:56:22 error   Unauthorized access
+2022-09-29 16:56:22 error   Unauthorized access
+
+Task 2. Find files containing specific strings
+In this task, I must navigate to the /home/analyst/reports/users directory and use the correct Linux commands and arguments to search for user data files that contain a specific string in their names.
+
+analyst@89b2f10a9b72:~/logs$ cd /home/analyst/reports/users
+analyst@89b2f10a9b72:~/reports/users$ ls | grep Q1
+Q1_access.txt
+Q1_added_users.txt
+Q1_deleted_users.txt
+analyst@89b2f10a9b72:~/reports/users$ ls | grep access
+Q1_access.txt
+Q2_access.txt
+Q3_access.txt
+Q4_access.txt
+
+Task 3. Search more file contents
+In this task, I must search for information contained in user files and report on users that were added and deleted from the system.
+
+analyst@89b2f10a9b72:~/logs$ cd /home/analyst/reports/users
+analyst@89b2f10a9b72:~/reports/users$ ls | grep Q1
+Q1_access.txt
+Q1_added_users.txt
+Q1_deleted_users.txt
+analyst@89b2f10a9b72:~/reports/users$ ls | grep access
+Q1_access.txt
+Q2_access.txt
+Q3_access.txt
+Q4_access.txt
+analyst@89b2f10a9b72:~/reports/users$ ls
+Q1_access.txt       Q1_deleted_users.txt  Q2_added_users.txt    Q3_access.txt       Q3_deleted_users.txt  Q4_added_users.txt
+Q1_added_users.txt  Q2_access.txt         Q2_deleted_users.txt  Q3_added_users.txt  Q4_access.txt         Q4_deleted_users.txt
+analyst@89b2f10a9b72:~/reports/users$ grep jhill Q2_deleted_users.txt
+1025         jhill     Sales
+analyst@89b2f10a9b72:~/reports/users$ grep "Human Resources" Q4_added_users.txt
+1151         sshah     Human Resources
+1145         msosa     Human Resources
