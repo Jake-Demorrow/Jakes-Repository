@@ -1,0 +1,113 @@
+In this scenario, you must examine and manage the permissions on the files in the /home/researcher2/projects directory for the researcher2 user.
+The researcher2 user is part of the research_team group.
+You must check the permissions for all files in the directory, including any hidden files, to make sure that permissions align with the authorization that should be given. When it doesn't, you must change the permissions.
+
+Task 1. Check file and directory details
+
+researcher2@93e92f3096b8:/home$ ls
+researcher2  student
+researcher2@93e92f3096b8:/home$ cd researcher2
+researcher2@93e92f3096b8:~$ ls
+projects
+researcher2@93e92f3096b8:~$ cd projects
+researcher2@93e92f3096b8:~/projects$ ls
+drafts  project_k.txt  project_m.txt  project_r.txt  project_t.txt
+researcher2@93e92f3096b8:~/projects$ ls -l
+total 20
+drwx--x--- 2 researcher2 research_team 4096 Sep  6 12:46 drafts
+-rw-rw-rw- 1 researcher2 research_team   46 Sep  6 12:46 project_k.txt
+-rw-r----- 1 researcher2 research_team   46 Sep  6 12:46 project_m.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_r.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_t.txt
+researcher2@93e92f3096b8:~/projects$ ls -la
+total 32
+drwxr-xr-x 3 researcher2 research_team 4096 Sep  6 12:46 .
+drwxr-xr-x 3 researcher2 research_team 4096 Sep  6 13:56 ..
+-rw--w---- 1 researcher2 research_team   46 Sep  6 12:46 .project_x.txt
+drwx--x--- 2 researcher2 research_team 4096 Sep  6 12:46 drafts
+-rw-rw-rw- 1 researcher2 research_team   46 Sep  6 12:46 project_k.txt
+-rw-r----- 1 researcher2 research_team   46 Sep  6 12:46 project_m.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_r.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_t.txt
+researcher2@93e92f3096b8:~/projects$ 
+
+Task 2. Change file permissions
+None of the files should allow the other users to write to files.
+The file project_m.txt is a restricted file and should not be readable or writable by the group or other; only the user should have these permissions on this file.
+
+researcher2@93e92f3096b8:~/projects$ chmod o-w project_k.txt
+researcher2@93e92f3096b8:~/projects$ ls -l
+total 20
+drwx--x--- 2 researcher2 research_team 4096 Sep  6 12:46 drafts
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_k.txt
+-rw-r----- 1 researcher2 research_team   46 Sep  6 12:46 project_m.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_r.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_t.txt
+researcher2@93e92f3096b8:~/projects$ chmod g-r project_m.txt
+researcher2@93e92f3096b8:~/projects$ ls -l
+total 20
+drwx--x--- 2 researcher2 research_team 4096 Sep  6 12:46 drafts
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_k.txt
+-rw------- 1 researcher2 research_team   46 Sep  6 12:46 project_m.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_r.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_t.txt
+
+Task 3. Change file permissions on a hidden file
+In this task, you must determine if a hidden file has incorrect permissions and then change the permissions as needed. This action will further remove unauthorized access and strengthen security on the system.
+The file .project_x.txt is a hidden file that has been archived and should not be written to by anyone. (The user and group should still be able to read this file.)
+Change the permissions of the file .project_x.txt so that both the user and the group can read, but not write to, the file.
+
+researcher2@93e92f3096b8:~/projects$ ls -la
+total 32
+drwxr-xr-x 3 researcher2 research_team 4096 Sep  6 12:46 .
+drwxr-xr-x 3 researcher2 research_team 4096 Sep  6 13:56 ..
+-rw--w---- 1 researcher2 research_team   46 Sep  6 12:46 .project_x.txt
+drwx--x--- 2 researcher2 research_team 4096 Sep  6 12:46 drafts
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_k.txt
+-rw------- 1 researcher2 research_team   46 Sep  6 12:46 project_m.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_r.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_t.txt
+researcher2@93e92f3096b8:~/projects$ chmod u-w,g-w .project_x.txt
+researcher2@93e92f3096b8:~/projects$ ls -la
+total 32
+drwxr-xr-x 3 researcher2 research_team 4096 Sep  6 12:46 .
+drwxr-xr-x 3 researcher2 research_team 4096 Sep  6 13:56 ..
+-r-------- 1 researcher2 research_team   46 Sep  6 12:46 .project_x.txt
+drwx--x--- 2 researcher2 research_team 4096 Sep  6 12:46 drafts
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_k.txt
+-rw------- 1 researcher2 research_team   46 Sep  6 12:46 project_m.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_r.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_t.txt
+researcher2@93e92f3096b8:~/projects$ chmod g+r .project_x.txt
+researcher2@93e92f3096b8:~/projects$ ls -la
+total 32
+drwxr-xr-x 3 researcher2 research_team 4096 Sep  6 12:46 .
+drwxr-xr-x 3 researcher2 research_team 4096 Sep  6 13:56 ..
+-r--r----- 1 researcher2 research_team   46 Sep  6 12:46 .project_x.txt
+drwx--x--- 2 researcher2 research_team 4096 Sep  6 12:46 drafts
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_k.txt
+-rw------- 1 researcher2 research_team   46 Sep  6 12:46 project_m.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_r.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_t.txt
+
+Task 4. Change directory permissions
+In this task, you must change the permissions of a directory. First, you’ll check the group permissions of the /home/researcher2/projects/drafts directory and then modify the permissions as required.
+Only the researcher2 user should be allowed to access the drafts directory and its contents.
+
+researcher2@93e92f3096b8:~/projects$ ls
+drafts  project_k.txt  project_m.txt  project_r.txt  project_t.txt
+researcher2@93e92f3096b8:~/projects$ ls -l
+total 20
+drwx--x--- 2 researcher2 research_team 4096 Sep  6 12:46 drafts
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_k.txt
+-rw------- 1 researcher2 research_team   46 Sep  6 12:46 project_m.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_r.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_t.txt
+researcher2@93e92f3096b8:~/projects$ chmod g-x drafts
+researcher2@93e92f3096b8:~/projects$ ls -l
+total 20
+drwx------ 2 researcher2 research_team 4096 Sep  6 12:46 drafts
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_k.txt
+-rw------- 1 researcher2 research_team   46 Sep  6 12:46 project_m.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_r.txt
+-rw-rw-r-- 1 researcher2 research_team   46 Sep  6 12:46 project_t.txt
